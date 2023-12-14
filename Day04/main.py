@@ -7,6 +7,11 @@ class Day4:
     def part1(self,inp=None):
         if not inp:inp=self.input
         v = 0
+        for i in inp:
+            c1,c2 = [set(range(list(map(int,j.split('-')))[0],list(map(int,j.split('-')))[1]+1))  for j  in i.split(',')]
+            if c1.issubset(c2) or c2.issubset(c1):
+                v+=1
+
         print(f'Part1: {v}')
 
         
@@ -14,6 +19,10 @@ class Day4:
     def part2(self,inp=None):
         if not inp:inp=self.input
         u = 0
+        for i in inp:
+            c1,c2 = [set(range(list(map(int,j.split('-')))[0],list(map(int,j.split('-')))[1]+1))  for j  in i.split(',')]
+            if len(c1.intersection(c2)) != 0:
+                u+=1
         print(f'Part2: {u}')
 
 
@@ -34,5 +43,5 @@ class Day4:
             print()
             self.part2()
 
-solver = Day4('test.txt','input.txt',True)
+solver = Day4('test.txt','input.txt',False)
 solver.solve()
