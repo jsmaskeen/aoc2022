@@ -7,14 +7,55 @@ class Day2:
     def part1(self,inp=None):
         if not inp:inp=self.input
         v = 0
+        mp = {'X':1,'Y':2,'Z':3}
+        x = list('XYZ')
+        a = list('ABC')
+        for i in inp:
+            o,m = i.split(' ')
+            cs = mp[m]
+            if x.index(m) == a.index(o):
+                cs+=3
+            elif (o == 'A' and m == 'Y') or (o=='B' and m == 'Z') or (o=='C' and m=='X'):
+                cs+=6
+            v+=cs
+
         print(f'Part1: {v}')
 
         
 
     def part2(self,inp=None):
         if not inp:inp=self.input
-        u = 0
-        print(f'Part2: {u}')
+        v = 0
+
+        for i in inp:
+            cs=0
+            o,m = i.split(' ')
+            if m == 'X':
+                if o == 'A':
+                    cs+=3
+                elif o == 'B':
+                    cs+=1
+                elif o == 'C':
+                    cs+=2
+            elif m =='Y':
+                if o == 'A':
+                    cs+=1
+                elif o == 'B':
+                    cs+=2
+                elif o == 'C':
+                    cs+=3
+                cs+=3
+            elif m == 'Z':
+                if o == 'A':
+                    cs+=2
+                elif o == 'B':
+                    cs+=3
+                elif o == 'C':
+                    cs+=1
+                cs+=6
+            
+            v+=cs
+        print(f'Part2: {v}')
 
 
 
@@ -34,5 +75,5 @@ class Day2:
             print()
             self.part2()
 
-solver = Day2('test.txt','input.txt',True)
+solver = Day2('test.txt','input.txt',0)
 solver.solve()
